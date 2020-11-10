@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <errno.h>
+#include <arpa/inet.h>
 #define PORT 8000
 
 int main(int argc, char const *argv[])
