@@ -99,7 +99,7 @@ int main(int argc, char const *argv[])
         }
         else
         {
-            printf("File input error\n");
+            printf("File input error for file input name %s\n", argv[i+1]);
         }
     }
     // send(sock , hello , strlen(hello) , 0 );  // send the message.
