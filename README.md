@@ -1,25 +1,45 @@
-To run the code, first compile both client and server files
+# Socket File Transfer Program
 
+## Description
+
+This program allows for the transfer of files from a server directory to a client directory over a socket connection. It handles various error cases and provides feedback during the transfer process.
+
+## Setup
+
+### Compilation
+
+Compile both client and server files using gcc:
+
+```bash
 gcc -o client client.c
 gcc -o server server.c
+```
 
-Then create the server directory and create all the files that you would like to keep in the server
+### Running the Server
 
-Run the server from the server directory
+Navigate to the server directory and execute the server program:
 
-<path>/server
+```bash
+cd <path>/server
+./server
+```
 
-Run the client and input the filenames that you would like to transfer from the server to the client
+### Running the Client
 
+```bash
 ./client <filename1> <filename2> <filename3> ...
+```
 
-It will then transfer the files from the server directory to the client directory displaying the percentage of completion for each file one by one, creating files if they do not already existed and replacing them if they already do exist
+## Transfer Process
 
-Error messages are outputted for various cases:
-1. If the file doesn't exist in the server directory
-2. If the input is a directory and not a file
-3. If the file does not have read permissions for files in the server directory
-4. If the file does not have write permissions for files in the client directory
-5. If the input is a directory that already exists in the client directory
+The client sends filenames one by one to the server. The server verifies files for issues (permissions, existence, etc.). If no issues, it transfers data in chunks of 1024 bytes until the file is fully sent. Error messages are generated for the following cases:
 
-The way the code works is that I send the filenames that inputted one by one from the client side to the server. The server then checks in its directory if those files do not have any issues with them (refer to the errors mentioned above). If they do, it lets the client know that there is any error and moves on to  the next file. If there isn't any issue, it then starts sending the data in file from the server to the client 1024 bytes at a time. This continues until the whole file has been sent. Then it moves onto the next file and this process repeats until all the files have been taken care of. After all the files have been taken care of, the server continues running while the client finishes. Press ctrl + c to stop the server.
+1. File not found in the server directory.
+2. Input is a directory instead of a file.
+3. Read permissions are lacking for server files.
+4. Write permissions are lacking for client files.
+5. Attempt to overwrite an existing directory in the client.
+
+## Termination
+
+The server continues running after file transfers until manually stopped with `ctrl + c`. The client finishes execution upon completing file transfers.
