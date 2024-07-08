@@ -10,7 +10,7 @@ This program allows for the transfer of files from a server directory to a clien
 
 Compile both client and server files using gcc:
 
-```bash
+```
 gcc -o client client.c
 gcc -o server server.c
 ```
@@ -19,14 +19,14 @@ gcc -o server server.c
 
 Navigate to the server directory and execute the server program:
 
-```bash
+```
 cd <path>/server
 ./server
 ```
 
 ### Running the Client
 
-```bash
+```
 ./client <filename1> <filename2> <filename3> ...
 ```
 
